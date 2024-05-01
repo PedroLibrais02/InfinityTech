@@ -2,7 +2,7 @@
     DataModulo destinado apenas às operações envolvendo 
     Scraping de Web Sites.
 """
-import dbDM #InfinityTech Data Module
+from backend import dbDM #InfinityTech Data Module
 import requests
 from bs4 import BeautifulSoup
 

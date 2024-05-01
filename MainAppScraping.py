@@ -3,8 +3,8 @@
 """
 import tkinter as tk
 from os import path
-import dbDM #InfinityTech DB Data Module
-import scrapingDM #InfinityTech Scraping Data Module
+from backend import dbDM #InfinityTech DB Data Module
+from backend import scrapingDM #InfinityTech Scraping Data Module
 
 def scrap_banco(label_message, entry_banco):
     try:  
