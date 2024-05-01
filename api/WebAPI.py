@@ -27,7 +27,8 @@ def scrape_banco(banco_nome):
 
 @app.route('/getInfoFromBank/<banco_nome>', methods=['GET'])
 def get_info_from_bank_route(banco_nome):
-    return jsonify(scrape_banco(banco_nome))
+    data = scrape_banco(banco_nome)
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)
