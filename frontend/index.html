@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfinityTech</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen" />
+    <script defer src="pesquisa.js"></script>
+
+    <!-- icons google -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+        <div id="containerSideMenu">
+            <div id="contentSideMenu">
+
+            </div>
+            <button id="buttonSideMenu" onclick="openMenu()">
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </button>
+        </div>
+        
+        <div class="container">
+            <div class="elemento1">
+                <img src="img/infinity_logo.png" alt="Logo" id="Logo">
+            </div>
+            <div class="elemento2" id="barra">
+                <input type="text" name="" id="search" placeholder="Pesquisar Banco" onkeyup="search()" >
+                <div class="search-btn"> 
+                    <img src="img/search.png" alt="" id="icone">
+                </div>
+            </div>
+        </div>
+        <div class="bancos" id="bancos_classe">
+            <script>
+            
+                let divBancos = document.querySelector("#bancos_classe")
+                
+                fetch("dados.json").then((response) =>{
+                    response.json().then((dados) =>{
+                        dados.banco_json.map((banco_json) => {
+                            divBancos.innerHTML += 
+                            `<li name="dados_banco"> 
+                                <div class='container_banco'>
+                                    <div id='div_img'>
+                                        <img src="${banco_json.imagem} "id="logo_banco">
+                                    </div>
+                                    <div id='info_banco'>
+                                        <div class="header_banco">
+                                            <p><b>${banco_json.nome}</b></p>
+                                            <button onclick='addChart(${banco_json.nome})'>
+                                                <span class="material-symbols-outlined">
+                                                    add_circle
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <p><a href='${banco_json.link}'>${banco_json.link}</a></p> 
+                                        <p>${banco_json.descricao}</p>
+                                    </div>
+                                </div>
+                            </li>`
+                        })
+                    })
+                })
+             </script>
+        </div>
+        <div id="conteudo"></div>
+        
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./openSideMenu.js"></script>
+    <script src="./chartMenu.js"></script>
+</body>
+</html>
