@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfinityTech</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen" />
-    <script defer src="pesquisa.js"></script>
+    <!-- <script defer src="pesquisa.js"></script> -->
 
     <!-- icons google -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -18,7 +18,7 @@
 
             </div>
             <button id="buttonSideMenu" onclick="openMenu()">
-                <span class="material-symbols-outlined">
+                <span id="iconMenu" class="material-symbols-outlined">
                     chevron_right
                 </span>
             </button>
@@ -26,17 +26,17 @@
         
         <div class="container">
             <div class="elemento1">
-                <img src="img/infinity_logo.png" alt="Logo" id="Logo">
+                <img src="../img/infinity_logo.png" alt="Logo" id="Logo">
             </div>
             <div class="elemento2" id="barra">
                 <input type="text" name="" id="search" placeholder="Pesquisar Banco" onkeyup="search()" >
                 <div class="search-btn"> 
-                    <img src="img/search.png" alt="" id="icone">
+                    <img src="../img/search.png" alt="" id="icone">
                 </div>
             </div>
         </div>
         <div class="bancos" id="bancos_classe">
-            <script>
+            <!-- <script>
             
                 let divBancos = document.querySelector("#bancos_classe")
                 
@@ -66,12 +66,13 @@
                         })
                     })
                 })
-             </script>
+             </script> -->
         </div>
         <div id="conteudo"></div>
         
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./openSideMenu.js"></script>
+    <script src="./searchIntoApi.js"></script>
     <script src="./chartMenu.js"></script>
 </body>
 </html>
