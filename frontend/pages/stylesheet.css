@@ -1,0 +1,164 @@
+
+    .container_banco{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #div_img{
+        margin-top: 2%;
+        
+    }
+    #info_banco{ 
+    
+        margin-left: 3%;
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    #logo_banco{
+        width: 120px;
+        height: 120px;
+        padding: 20px;
+        animation-name: cores;
+        animation-duration: 80s;
+        animation-iteration-count: infinite;
+    }
+
+    #conteudo{
+        text-align: center;
+        color: red;
+    }
+
+    li{
+        list-style-type: none;
+    }
+    .container{
+        margin-top: 10%;
+        display: flex;
+        align-items: center;
+        flex-direction: column; 
+    }
+    
+    #Logo{
+        width: 100px;
+        height: 100px;
+    }
+
+    .elemento2{
+        background-color: rgba(128, 128, 128, 0.219);
+        border-radius: 20px;
+        width:250px;
+        height:35px;
+        justify-content: space-around;
+        display: flex;
+        align-items: center;
+        border: 1px solid black;
+    }
+    #barra{
+        /* display: block; */
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+        padding-right: 15px;
+    }
+    #icone{
+        width: 18px;
+    }
+    
+    #search{
+        /* padding-left: 20px; */
+        border: 0;
+        background: none;
+        outline: 0;
+        margin-left: 20px;
+    }
+
+    ::placeholder{
+        text-align: left;
+        color: gray;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+    }
+    
+    /* @media(min-width: 0px) and (max-width: 1200px) {
+        #barra{
+            margin-top: 40%;
+        }  
+    } */
+    @keyframes cores {
+        0% {background: aqua;}
+        25% {background: magenta ;}
+        50% {background: yellow;}
+        75% {background: aqua;}
+        100% {background: magenta;}
+    }
+ 
+    #containerSideMenu {
+        display: flex;
+        position: absolute;
+        top: 40px;
+        left: -440px;
+        transition-duration: 0.5s;
+    }
+
+    #contentSideMenu {
+        background-color: buttonface;
+        border: 0.5px solid black;
+        color: #fff;
+        padding: 20px;
+        width: 400px;
+        height: 600px;
+        border-radius: 0px 10px 10px 0px;
+
+        /* overflow-y: scroll; */
+        display: flex;
+        flex-direction: column;
+    }
+    #buttonSideMenu {
+        border: 0.5px solid black;
+        border-left: none;
+        width: 50px;
+        height: 40px;
+        margin-top: 50px;
+        border-radius: 0px 20px 20px 0px;
+    }
+
+    .material-symbols-outlined{
+        margin-left: 10px;
+        margin-top: 2px;
+    }
+
+    .header_banco {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .header_banco > button {
+        border: none;
+        background-color: transparent;
+    }
+
+    .content_banco {
+
+    }
+
+    .bancos {
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+        flex-direction: column;
+    }
+
+    .bancos > li {
+        background-color: aqua;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        margin: 10px;
+    }
