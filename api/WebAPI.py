@@ -51,16 +51,15 @@ def scrape_banco(banco_nome, moeda):
 
                     # Atualiza os valores no JSON com a moeda convertida
                     for key, value in bancos_data.items():
-                        if key != 'Nome' and key != 'Logo' and key != 'Publicação':
-                            if key == 'Ativo Total (R$)' or key == 'Captações (R$)' or key == 'Carteira de Crédito Classificada (R$)' or key == 'Lucro Líquido (R$)' or key == 'Patrimônio Líquido (R$)' or key == 'Patrimônio de Referência RWA (R$)':
-                                valores = re.match(padrao, value)
-                                if valores:
-                                    valor_em_reais = float(valores.group(1).replace(',', '.'))
-                                    texto_unidade = valores.group(2)
+                        if 'R$' in key:
+                            valores = re.match(padrao, value)
+                            if valores:
+                                valor_em_reais = float(valores.group(1).replace(',', '.'))
+                                texto_unidade = valores.group(2)
 
-                                    valor_em_moeda = valor_em_reais / valor_moeda_especifica
-                                    # Formata o valor convertido para sempre exibir duas casas decimais
-                                    bancos_data[key] = f'{moeda} {valor_em_moeda} {texto_unidade}'
+                                valor_em_moeda = valor_em_reais / valor_moeda_especifica
+                                # Formata o valor convertido para sempre exibir duas casas decimais
+                                bancos_data[key] = f'{moeda} {valor_em_moeda} {texto_unidade}'
                 else:
                     return {'error': 'Não foi possível acessar a API de conversão de moeda.'}, 500
 
