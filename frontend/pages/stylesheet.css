@@ -48,14 +48,14 @@
     }
 
     .elemento2{
-        background-color: rgba(128, 128, 128, 0.219);
+        background-color: #d5cbcb38;
         border-radius: 20px;
         width:250px;
         height:35px;
         justify-content: space-around;
         display: flex;
         align-items: center;
-        border: 1px solid black;
+        box-shadow: 2px 2px 20px rgb(197, 197, 197);
     }
     #barra{
         /* display: block; */
@@ -78,7 +78,7 @@
 
     ::placeholder{
         text-align: left;
-        color: gray;
+        color: rgb(48, 46, 46);
         font-family: Arial, Helvetica, sans-serif;
         font-size: 15px;
     }
@@ -99,26 +99,28 @@
     #containerSideMenu {
         display: flex;
         position: absolute;
-        top: 40px;
-        left: -440px;
+        top: 0px;
+        left: -540px;
         transition-duration: 0.5s;
+        height: 100%;
     }
 
     #contentSideMenu {
-        background-color: buttonface;
-        border: 0.5px solid black;
+        background-color: #e8e7e7;
         color: #fff;
         padding: 20px;
-        width: 400px;
-        height: 600px;
+        width: 500px;
+        height: 100%;
         border-radius: 0px 10px 10px 0px;
 
-        /* overflow-y: scroll; */
+        overflow-y: scroll;
         display: flex;
         flex-direction: column;
+        box-shadow: 5px 5px 10px rgb(220, 220, 220);
     }
     #buttonSideMenu {
-        border: 0.5px solid black;
+        background-color: #d5cbcb38;
+        border: none;
         border-left: none;
         width: 50px;
         height: 40px;
@@ -155,10 +157,56 @@
     }
 
     .bancos > li {
-        background-color: aqua;
+        background-color: #d5cbcb38;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         padding: 10px;
         margin: 10px;
+        border-radius: 20px;
+        box-shadow: 1px 1px 10px rgb(208, 208, 208);
+    }
+
+    /* headerrr */
+    #headerApp {
+        /* display: flex;
+        justify-content: right;
+        align-items: center; */
+    }
+
+    .listBunners {
+        display: flex;
+        flex-direction: row;
+        top: 0px;
+        position: absolute;
+        right: 0px;
+    }
+
+    .img-bunner1 {
+        z-index: 3;
+        position: absolute;
+        right: 35px;
+        transition-duration: 0.5s;
+    }
+
+    .img-bunner1 > img {
+        height: 40px;
+        width: 40px;
+        border: 2px solid black;
+        border-radius: 100%;
+    }
+
+    .img-bunner2 {
+        z-index: 2;
+        overflow: hidden;
+        position: absolute;
+        right: 5px;
+        transition-duration: 0.5s;
+    }
+
+    .img-bunner2 > img {
+        height: 40px;
+        width: 40px;
+        border: 0.5px solid black;
+        border-radius: 100%;
     }

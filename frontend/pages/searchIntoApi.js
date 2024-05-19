@@ -1,10 +1,12 @@
 const url_api = "http://127.0.0.1:5000/getInfoFromBank/";
 const divBancos = document.querySelector("#bancos_classe");
 
+var listaBusca = [];
+
 async function search() {
   divBancos.innerHTML = "";
   let text = document.getElementById("search").value;
-  await fetch(url_api + text, {
+  await fetch(url_api + text + '/' + moneySelected, {
     method: "GET",
     mode: "cors", 
     cache: "no-cache",
@@ -27,7 +29,9 @@ async function search() {
 
 function writeBanks(data=[]) {
   data.forEach((element) => {
-    console.log(fomartDataResponse(element));
+    let obj = fomartDataResponse(element);
+    let i = listaBusca.push(obj);
+
     divBancos.innerHTML += `<li class="dados_banco"> 
       <hr>
       <div class='container_banco'>
@@ -36,7 +40,9 @@ function writeBanks(data=[]) {
         <div id='info_banco'>
           <div class="header_banco">
             <h2>${String(element.Nome).toUpperCase()} - ${element['Publicação']}</h2>
-            <button onclick="addChart('${element.Nome}')">
+            <button 
+              onclick="addChart(${i-1})"
+            >
               <span class="material-symbols-outlined">
                   add_circle
               </span>
@@ -51,6 +57,7 @@ function writeBanks(data=[]) {
       </div>
       <hr>
     </li>`;
+    // console.log(divBancos.innerHTML);
   });
 }
 

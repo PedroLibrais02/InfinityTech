@@ -7,8 +7,6 @@ import re
 app = Flask(__name__)
 CORS(app)
 
-import re
-import requests
 
 def scrape_banco(banco_nome, moeda):
     try:
@@ -67,10 +65,12 @@ def scrape_banco(banco_nome, moeda):
     except Exception as e:
         return {'error': f'Ocorreu um erro ao processar a solicitação: {str(e)}'}, 500
 
+
 @app.route('/getInfoFromBank/<banco_nome>/<moeda>', methods=['GET'])
 def get_info_from_bank_route(banco_nome, moeda):
     data = scrape_banco(banco_nome, moeda)
     return jsonify(data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
