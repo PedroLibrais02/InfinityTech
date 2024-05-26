@@ -35,11 +35,9 @@ function writeBanks(data=[]) {
     divBancos.innerHTML += `<li class="dados_banco"> 
       <hr>
       <div class='container_banco'>
-        <div id='div_img'>
-        </div>
         <div id='info_banco'>
           <div class="header_banco">
-            <h2>${String(element.Nome).toUpperCase()} - ${element['Publicação']}</h2>
+            <img height="50px" src="https:${element['Logo']}" alt="">
             <button 
               onclick="addChart(${i-1})"
             >
@@ -49,9 +47,10 @@ function writeBanks(data=[]) {
             </button>
           </div>
           <div class="content_banco">
-            <p>Ativo Total: ${element['Ativo Total (R$)']}</p>
-            <p>Lucro Líquido: ${element['Lucro Líquido (R$)']}</p>
-            <p>Patrimônio Líquido: ${element['Patrimônio Líquido (R$)']}</p>
+            <h2>${String(element.Nome).toUpperCase()} - ${element['Publicação']}</h2>
+            <p>Ativo Total: ${String(element['Ativo Total (R$)']).replace("USD", "$")}</p>
+            <p>Lucro Líquido: ${String(element['Lucro Líquido (R$)']).replace("USD", "$")}</p>
+            <p>Patrimônio Líquido: ${String(element['Patrimônio Líquido (R$)']).replace("USD", "$")}</p>
           </div>
         </div>
       </div>

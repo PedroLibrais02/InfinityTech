@@ -30,4 +30,8 @@ function changeMoney() {
     img2.style.border = '0.5px solid black';
     img1.style.border = '2px solid black';
   }
+
+  if(document.getElementById("search").value != '') {
+    search();
+  }
 }

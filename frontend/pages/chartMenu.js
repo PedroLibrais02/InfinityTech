@@ -4,9 +4,8 @@
 
 var chartsList = [];
 
-const createChart = (id, labels, data) => {
-  let ctx = document.getElementById(id);
-  return new Chart(ctx, {
+function createChart(id, labels, data, i) {
+  let minhaChart = new Chart(document.getElementById(id), {
     type: 'bar',
     data: {
       labels: labels,
@@ -37,12 +36,7 @@ function itemChart(i) {
   `;
 }
 
-function removeChart(id) {
-  chartsList.splice((chartsList.indexOf(id)));
-}
-
 function addChart(i) {
-  let menu = document.getElementById("containerSideMenu");
   let div = itemChart(listaBusca[i]['Nome']);
 
   let label = ["Ativo Total (R$)", "Captações (R$)", "Patrimônio Líquido (R$)", "Carteira de Crédito Classificada (R$)"];
@@ -53,31 +47,32 @@ function addChart(i) {
     parseInt(listaBusca[i]["Carteira de Crédito Classificada (R$)"])
   ];
 
-  chartsList.push({
+  chartsList.unshift({
     "id": `${listaBusca[i]['Nome']}_${Math.random(0, 100)}`,
     "label": label,
     "data": data,
     "div": div,
-    "divClass": `myChart${listaBusca[i]['Nome']}`
+    "divClass": `myChart${listaBusca[i]['Nome']}`,
+    "chart": ''
   });
 
-  if(menu.style.left == "0px") {
+  console.log(chartsList);
+  // if(menu.style.left == "0px") {
     listCharts();
-  }
+  // }
 }
 
 function removeChart(i) {
   chartsList.pop(chartsList.findIndex((element) => element["id"] == i));
+  listCharts();
 }
 
 function listCharts() {
-  const div = document.getElementById("contentSideMenu");
+  var div = document.getElementById("contentSideMenu");
 
   div.innerHTML = "";
   for(var i = 0; i < chartsList.length; i ++) {
-    let element = chartsList[i];
-    div.innerHTML += element["div"];
-    div.innerHTML += "<br>"
-    createChart(element["divClass"], element["label"], element["data"])
+    div.innerHTML += chartsList[i]["div"];
+    createChart(chartsList[i]["divClass"], chartsList[i]["label"], chartsList[i]["data"], i);
   }
 }
