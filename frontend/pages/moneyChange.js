@@ -2,7 +2,6 @@ var money = ['USD', 'NULL'];
 var moneySelected = 'NULL';
 
 function changeMoney() {
-  console.log(moneySelected);
   let bnn1 = document.getElementById("img-bunner1");
   let bnn2 = document.getElementById("img-bunner2");
 

@@ -1,78 +1,73 @@
-// // let label = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
-
-// // let data = [12, 19, 3, 5, 2, 3]
-
 var chartsList = [];
 
-function createChart(id, labels, data, i) {
-  let minhaChart = new Chart(document.getElementById(id), {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Banco',
-        data: data,
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-}
-
-function itemChart(i) {
+function itemChart(id) {
   return `
-    <div style="background-color: #e8e7e7;">
+    <div id="container_${id}" style="background-color: #e8e7e7;">
       <div style="display: flex; justify-content: right; flex-direction: row;">
-        <button style="border:none; color: black;" onclick="removeChart('myChart${i}')">Remover</button>
+        <button style="border:none; color: black;" onclick="removeChart('${id}')">Remover</button>
       </div>
-      <canvas id="myChart${i}"></canvas>
+      <canvas id="${id}"></canvas>
     </div>
   `;
 }
 
 function addChart(i) {
-  let div = itemChart(listaBusca[i]['Nome']);
+  const uniqueId = `myChart${Math.random().toString(36).substr(2, 9)}`;
+  const div = itemChart(uniqueId);
 
-  let label = ["Ativo Total (R$)", "Captações (R$)", "Patrimônio Líquido (R$)", "Carteira de Crédito Classificada (R$)"];
-  let data = [
+  const labels = [`Ativo Total (${listaBusca[i]['ife']})`, `Captações (${listaBusca[i]['ife']})`, `Patrimônio Líquido (${listaBusca[i]['ife']})`, `Carteira de Crédito Classificada (${listaBusca[i]['ife']})`];
+  const data = [
     listaBusca[i]["Ativo Total (R$)"], 
-    listaBusca[i][ "Captações (R$)"], 
+    listaBusca[i]["Captações (R$)"], 
     parseInt(listaBusca[i]["Patrimônio Líquido (R$)"]), 
     parseInt(listaBusca[i]["Carteira de Crédito Classificada (R$)"])
   ];
 
   chartsList.unshift({
-    "id": `${listaBusca[i]['Nome']}_${Math.random(0, 100)}`,
-    "label": label,
+    "id": uniqueId,
+    "label": labels,
     "data": data,
-    "div": div,
-    "divClass": `myChart${listaBusca[i]['Nome']}`,
-    "chart": ''
+    "div": div
   });
 
-  console.log(chartsList);
-  // if(menu.style.left == "0px") {
-    listCharts();
-  // }
+  listCharts();
 }
 
-function removeChart(i) {
-  chartsList.pop(chartsList.findIndex((element) => element["id"] == i));
+function removeChart(id) {
+  const index = chartsList.findIndex(element => element.id === id);
+  if (index !== -1) {
+    chartsList.splice(index, 1);
+  }
   listCharts();
 }
 
 function listCharts() {
-  var div = document.getElementById("contentSideMenu");
+  const div = document.getElementById("contentSideMenu");
+  div.innerHTML = ""; 
 
-  div.innerHTML = "";
-  for(var i = 0; i < chartsList.length; i ++) {
-    div.innerHTML += chartsList[i]["div"];
-    createChart(chartsList[i]["divClass"], chartsList[i]["label"], chartsList[i]["data"], i);
+  for (let i = 0; i < chartsList.length; i++) {
+    div.innerHTML += chartsList[i].div;
+  }
+
+  for (let i = 0; i < chartsList.length; i++) {
+    const ctx = document.getElementById(chartsList[i].id).getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: chartsList[i].label,
+        datasets: [{
+          label: 'Banco',
+          data: chartsList[i].data,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
   }
 }

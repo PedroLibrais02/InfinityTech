@@ -22,14 +22,16 @@ async function search() {
       if(response[1] == 500) {
         console.log("Banco não encontrado!");
       } else {
-        writeBanks([response]);
+        writeBanks([response], moneySelected);
       }
     });
 }
 
-function writeBanks(data=[]) {
+function writeBanks(data=[], money="NULL") {
   data.forEach((element) => {
     let obj = fomartDataResponse(element);
+    let ife = money == "NULL"? "R$" : "$";
+    obj["ife"] = ife;
     let i = listaBusca.push(obj);
 
     divBancos.innerHTML += `<li class="dados_banco"> 
@@ -48,9 +50,9 @@ function writeBanks(data=[]) {
           </div>
           <div class="content_banco">
             <h2>${String(element.Nome).toUpperCase()} - ${element['Publicação']}</h2>
-            <p>Ativo Total: ${String(element['Ativo Total (R$)']).replace("USD", "$")}</p>
-            <p>Lucro Líquido: ${String(element['Lucro Líquido (R$)']).replace("USD", "$")}</p>
-            <p>Patrimônio Líquido: ${String(element['Patrimônio Líquido (R$)']).replace("USD", "$")}</p>
+            <p>Ativo Total: ${ ife + " " + obj['Ativo Total (R$)']}</p>
+            <p>Lucro Líquido: ${ ife + " " + obj['Lucro Líquido (R$)']}</p>
+            <p>Patrimônio Líquido: ${ ife + " " + obj['Patrimônio Líquido (R$)']}</p>
           </div>
         </div>
       </div>
@@ -61,7 +63,15 @@ function writeBanks(data=[]) {
 }
 
 function convertOfNumber(valor) {
-  const numeroLimpo = valor.replace(/[R$,]/g, '').replace('trilhão', 'e12').replace('trilhões', 'e12').replace('bilhão', 'e9').replace('bilhões', 'e9').replace(/\s+/g, '');
+  const numeroLimpo = valor.replace(/[R$,]/g, '')
+    .replace("USD", "")
+    .replace('trilhão', 'e12')
+    .replace('trilhões', 'e12')
+    .replace('bilhão', 'e9')
+    .replace('bilhões', 'e9')
+    .replace('milhão', 'e6')
+    .replace('milhões', 'e6')
+    .replace(/\s+/g, '');
   return parseFloat(numeroLimpo);
 }
 
