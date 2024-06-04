@@ -3,6 +3,7 @@ const divBancos = document.querySelector("#bancos_classe");
 
 var listaBusca = [];
 
+
 async function search() {
   divBancos.innerHTML = "";
   let text = document.getElementById("search").value;
@@ -29,10 +30,27 @@ async function search() {
 
 function writeBanks(data=[], money="NULL") {
   data.forEach((element) => {
+    
     let obj = fomartDataResponse(element);
-    let ife = money == "NULL"? "R$" : "$";
+    let ife = ""
+    switch(money) {
+        case "NULL":
+          ife = "R$";
+           break;
+        case "USD":
+          ife = "$";
+            break;
+        case "EUR":
+          ife = "€";
+            break;
+        case "GBR":
+          ife = "£";
+            break;
+    }
+
     obj["ife"] = ife;
     let i = listaBusca.push(obj);
+    console.log(obj);
 
     divBancos.innerHTML += `<li class="dados_banco"> 
       <hr>
@@ -64,7 +82,10 @@ function writeBanks(data=[], money="NULL") {
 
 function convertOfNumber(valor) {
   const numeroLimpo = valor.replace(/[R$,]/g, '')
+    .replace("EUR", "")
+    .replace("EU", "")
     .replace("USD", "")
+    .replace("GBP", "")
     .replace('trilhão', 'e12')
     .replace('trilhões', 'e12')
     .replace('bilhão', 'e9')
